@@ -1,0 +1,145 @@
+---
+import Logo from "./elements/gli.astro";
+import NavLink from "./elements/nav-link.astro";
+import Navigation from "./sections/navigation.astro";
+import ThemeSwitch from "./theme/toggle.astro";
+import { Icon } from "astro-iconify";
+---
+
+<header class="bg-secondary sticky top-0 z-50 w-full" transition:animate="none">
+  <div class="mx-auto max-w-screen px-2 sm:px-3 lg:px-4">
+    <div class="flex h-16 md:h-20 lg:h-24 items-center justify-between">
+      <div class="md:flex md:items-center md:gap-4">
+        <a class="flex mt-4 xl:mt-12 relative z-50" href="/">
+          <Logo
+            id="gli-logo"
+            class="size-24 md:size-32 lg:size-38 xl:size-40 object-contain"
+          />
+          <span class="sr-only">Home</span>
+        </a>
+        <a
+          href="/"
+          id="company-title"
+          class="hidden md:block uppercase text-2xl font-serif"
+          ><strong>Green Lion</strong> Partners</a
+        >
+      </div>
+
+      <div class="hidden xl:block">
+        <Navigation role="global" />
+      </div>
+
+      <div id="mobile-nav" class="flex xl:hidden">
+        <Navigation role="mobile" />
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="flex items-center 2xl:pr-6">
+          <ThemeSwitch />
+        </div>
+
+        <div class="block xl:hidden">
+          <button
+            aria-label="Open mobile navigation"
+            id="mobile-nav-button"
+            class="rounded bg-popover p-2 text-popover-foreground transition hover:text-gray-600/75 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5 menu"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <Icon name="mdi:close" class="size-5 close" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #gli-logo {
+      --blur-amount: 30px;
+      --blur-opacity: 0.5;
+      --blur-brightness: 1;
+      filter: drop-shadow(
+          0px 0px var(--blur-amount) hsl(var(--primary) / var(--blur-opacity))
+        )
+        brightness(var(--blur-brightness));
+      transition: filter 400ms ease-in-out;
+      &:hover {
+        --blur-amount: 10px;
+        --blur-opacity: 0.8;
+        --blur-brightness: 1.2;
+      }
+    }
+
+    #company-title {
+      font-weight: 300;
+      letter-spacing: 0.08vw;
+      word-spacing: 0.1rem;
+      & > strong {
+        font-weight: 750;
+      }
+    }
+
+    #mobile-nav {
+      overflow: hidden;
+      position: fixed;
+      z-index: 40;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: hsl(var(--background));
+      transform: translateX(-100%);
+      transition: transform 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
+      &.open {
+        transform: translateX(0);
+        transition: transform 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
+      }
+    }
+    #mobile-nav-button {
+      display: block;
+      & > svg.menu {
+        display: block;
+      }
+      & > svg.close {
+        display: none;
+      }
+      &.open {
+        & > svg.menu {
+          display: none;
+        }
+        & > svg.close {
+          display: block;
+        }
+      }
+    }
+  </style>
+
+  <script is:inline>
+    function toggleMobileNav() {
+      const mobileNav = document.getElementById("mobile-nav");
+      const mobileNavTrigger = document.getElementById("mobile-nav-button");
+      mobileNav?.classList.toggle("open");
+      mobileNavTrigger?.classList.toggle("open");
+      document.body.classList.toggle("overflow-hidden");
+    }
+
+    function initializeNav() {
+      const mobileNavTrigger = document.getElementById("mobile-nav-button");
+      mobileNavTrigger?.addEventListener("click", toggleMobileNav);
+    }
+
+    document.addEventListener("astro:after-swap", initializeNav);
+    initializeNav();
+  </script>
+</header>

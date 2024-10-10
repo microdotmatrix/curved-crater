@@ -1,0 +1,59 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import { AstroFont } from "astro-font";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Astro description" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <script is:inline>
+    if (localStorage.theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
+  <AstroFont
+    config={[
+      {
+        src: [],
+        name: "Work Sans",
+        googleFontsURL:
+          "https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+        preload: true,
+        display: "swap",
+        cssVariable: "font-sans",
+        fallback: "sans-serif",
+      },
+      {
+        src: [],
+        name: "Montserrat",
+        googleFontsURL:
+          "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..800;1,100..800&display=swap",
+        preload: true,
+        display: "swap",
+        cssVariable: "font-serif",
+        fallback: "sans-serif",
+      },
+    ]}
+  />
+  <ViewTransitions />
+  <script>
+    import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
+    document.addEventListener("astro:before-swap", (e) =>
+      [
+        ...(e as TransitionBeforeSwapEvent).newDocument.head.querySelectorAll(
+          'link[as="font"]',
+        ),
+      ].forEach((link) => link.remove()),
+    );
+  </script>
+</head>

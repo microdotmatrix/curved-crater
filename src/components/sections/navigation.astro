@@ -1,0 +1,57 @@
+---
+import { cn } from "@/lib/utils";
+import NavLink from "../elements/nav-link.astro";
+
+const { role } = Astro.props;
+---
+
+<nav aria-label={`${role} navigation`} class="m-auto">
+  <ul
+    class={cn("flex items-center gap-6 [font-weight:350] uppercase [&>li]:text-gray-500", role === "mobile" ? "flex-col text-xl" : "flex-row text-base")}
+  >
+    <li>
+      <NavLink link="about" />
+    </li>
+
+    <li>
+      <NavLink link="products" />
+    </li>
+
+    <li>
+      <NavLink link="affiliates" />
+    </li>
+
+    <li>
+      <NavLink link="press" />
+    </li>
+
+    <li>
+      <NavLink link="donate" />
+    </li>
+
+    {role === "global" ? (
+      <li>
+        <details class="relative">
+          <summary class="cursor-pointer">More...</summary>
+          <ul class="absolute top-8 left-0 bg-secondary p-4">
+            <li>
+              <NavLink link="media" />
+            </li>
+
+            <li>
+              <NavLink link="contact" />
+            </li>
+          </ul>
+        </details>
+      </li>
+    ): (
+      <li>
+        <NavLink link="media" />
+      </li>
+
+      <li>
+        <NavLink link="contact" />
+      </li>
+    )}
+  </ul>
+</nav>

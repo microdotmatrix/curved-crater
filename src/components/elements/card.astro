@@ -1,0 +1,18 @@
+---
+const { title, content, link } = Astro.props;
+---
+
+<div
+  id="card"
+  class="text-white p-8 space-y-4 flex-1 rounded-md shadow-xl shadow-zinc-900/50 dark:shadow-zinc-900 flex flex-col justify-between items-center space-y-4 lg:space-y-8"
+>
+  <h3>{title}</h3>
+  <p class="text-base text-center text-gray-300">{content}</p>
+  <a href={`/${link}`} class="button">Read more</a>
+</div>
+
+<style>
+  #card {
+    background: hsl(from hsl(var(--primary)) h calc(s * 0.6) calc(l * 0.4) / 1);
+  }
+</style>

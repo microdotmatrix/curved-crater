@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+const { title, link, image } = Astro.props;
+---
+
+<li
+  class="flex flex-col items-center justify-between gap-4 lg:gap-8 p-8 hover:bg-secondary hover:scale-105 scale-100 z-10"
+>
+  <figure class="size-48 mx-auto bg-white rounded-md overflow-hidden border">
+    <Image
+      src={image}
+      alt={title}
+      width="117"
+      height="116"
+      class="size-full object-contain"
+    />
+  </figure>
+  <p class="text-sm text-center">
+    <slot />
+  </p>
+  <a class="button" href={link} target="_blank">Donate Now</a>
+</li>
+
+<style>
+  li {
+    --intro-delay: 1000ms;
+    opacity: 1;
+    scale: 1;
+    transition:
+      opacity 300ms ease-in var(--intro-delay),
+      scale 500ms ease var(--intro-delay),
+      background-color 200ms linear,
+      transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, background-color;
+    @starting-style {
+      opacity: 0;
+      scale: 0.5;
+    }
+    &:nth-child(2) {
+      --intro-delay: 1250ms;
+    }
+    &:nth-child(3) {
+      --intro-delay: 1500ms;
+    }
+  }
+</style>

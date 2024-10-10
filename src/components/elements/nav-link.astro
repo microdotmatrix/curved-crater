@@ -1,0 +1,16 @@
+---
+const { link } = Astro.props;
+
+const active = Astro.url.pathname;
+---
+
+<a
+  href={`/${link}`}
+  class:list={[
+    "hover:text-primary transition",
+    active.includes(`/${link}`) ? "text-primary" : null,
+  ]}
+  aria-current={active ? "page" : undefined}
+>
+  {link}
+</a>

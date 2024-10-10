@@ -1,0 +1,149 @@
+---
+import Donation from "@/components/elements/donate.astro";
+import Layout from "@/layouts/default.astro";
+import { Image } from "astro:assets";
+---
+
+<Layout title="Donate">
+  <section id="content" class="space-y-8 lg:space-y-24">
+    <h1>Donate</h1>
+    <p>
+      Despite the incredible growth of the cannabis industry, the drug war is
+      still claiming victims every day. There are patients all over the world
+      that don’t have access to the medicine they need, and yet there are people
+      in jail for trying to help provide that access. Advocacy groups save and
+      improve lives while also pushing the industry forward. Consequently,
+      support of these organizations is integral to the work both towards
+      decriminalization and success in this space. We envision a future where no
+      one is punished for their responsible use of the cannabis plant.
+    </p>
+    <p id="tagline" class="text-right font-normal text-xl">
+      <span class="text-primary">The drug war is not over,</span> and it is crucial
+      that we continue to pursue its end.
+    </p>
+  </section>
+  <section id="content" class="mt-8">
+    <ul
+      class="grid grid-cols-1 lg:grid-cols-3 border-t max-lg:divide-y lg:divide-x divide-secondary border-t-secondary"
+    >
+      <Donation
+        title="Marijuana Policy Project"
+        link="https://www.mpp.org/support/donate/"
+        image="https://static.wixstatic.com/media/0c8290_16a7d9a602d648d19de6599022deba49~mv2.png/v1/fill/w_117,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/0c8290_16a7d9a602d648d19de6599022deba49~mv2.png"
+      >
+        Since its founding in 1995, the MPP has been leading the way in
+        reforming U.S. marijuana laws by lobbying for legislation and sponsoring
+        ballot initiatives to replace marijuana prohibition with a sensible
+        system of regulation, garnering widespread media coverage of the need to
+        change marijuana policies, and much more.
+      </Donation>
+      <Donation
+        title="Students for Sensible Drug Policy"
+        link="https://ssdp.nationbuilder.com/donate"
+        image="https://static.wixstatic.com/media/0c8290_edc1828530d14be7b6a38ae64acdd92b~mv2.png/v1/fill/w_239,h_102,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/0c8290_edc1828530d14be7b6a38ae64acdd92b~mv2.png"
+      >
+        Students for Sensible Drug Policy is an international grassroots network
+        of students who are concerned about the impact of drug abuse on our
+        comm-unities, but who also know that the “War on Drugs” is failing our
+        generation and our society.
+      </Donation>
+      <Donation
+        title="The Drug Policy Alliance"
+        link="https://engage.drugpolicy.org/secure/donate?ms=1B1_XXXXRightCorner&utm_campaign=fy17website&utm_medium=web&utm_source=XXXXwsc3RightCorner&cid=701U0000000xycW&_ga=2.42625573.1867827705.1496332908-290547026.1496332860"
+        image="https://static.wixstatic.com/media/0c8290_e237a86fbbb343d89f10a153c2e30c1d~mv2.png/v1/fill/w_116,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/0c8290_e237a86fbbb343d89f10a153c2e30c1d~mv2.png"
+      >
+        The Drug Policy Alliance envisions a just society in which the use and
+        regulation of drugs are grounded in science, compassion, health and
+        human rights, in which people are no longer punished for what they put
+        into their own bodies but only for crimes committed against others, and
+        in which the fears, prejudices and punitive prohibitions of today are no
+        more.
+      </Donation>
+    </ul>
+  </section>
+  <section id="content" style="--content-delay: 500ms;">
+    <figure class="w-full max-w-screen-lg mx-auto mb-12">
+      <Image
+        src="https://static.wixstatic.com/media/0c8290_32a78842da9f458da31d3aae9c551eed~mv2.png/v1/fill/w_978,h_582,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Screen%20Shot%202021-02-24%20at%209_57_47%20AM.png"
+        alt="Cannabis"
+        width="978"
+        height="582"
+        class="size-full object-cover"
+      />
+    </figure>
+    <div
+      id="stats"
+      class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 uppercase"
+    >
+      <div class="text-center">
+        <h4>10,000</h4>
+        <p class="text-sm text-balance">
+          Colorado jobs created in the legal cannabis industry
+        </p>
+      </div>
+      <div class="text-center">
+        <h4>36</h4>
+        <p class="text-sm text-balance">States with medical cannabis laws</p>
+      </div>
+      <div class="text-center">
+        <h4>$3.6</h4>
+        <p class="text-sm text-balance">
+          Billion spent enforcing cannabis prohibition in the U.S. (2010)
+        </p>
+      </div>
+      <div class="text-center">
+        <h4>114</h4>
+        <p class="text-sm text-balance">Times less toxic than alcohol</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  #content {
+    & > p {
+      opacity: 1;
+      transform: translateX(0px);
+      transition:
+        opacity 300ms ease-in 500ms,
+        transform 500ms ease 500ms;
+      @starting-style {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+    }
+    & > #tagline {
+      --intro-delay: 1000ms;
+      opacity: 1;
+      filter: blur(0px);
+      transition:
+        opacity 500ms ease var(--intro-delay),
+        filter 700ms ease var(--intro-delay);
+
+      @starting-style {
+        filter: blur(10px);
+        opacity: 0;
+      }
+    }
+  }
+
+  #stats {
+    & > div {
+      @apply px-8;
+      & > h4 {
+        @apply mb-2 lg:mb-4 text-primary;
+        &::after {
+          content: "";
+          position: relative;
+          display: block;
+          width: 20%;
+          height: 6px;
+          border-radius: 3px;
+          margin-inline: auto;
+          background: hsl(var(--primary));
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+</style>

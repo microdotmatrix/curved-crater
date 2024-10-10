@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+const { title, image, link } = Astro.props;
+---
+
+<div
+  id="product"
+  class="flex flex-col lg:flex-row items-center justify-center mt-8 gap-4 lg:gap-24 max-w-screen-xl mx-auto"
+>
+  <figure class="basis-1/4">
+    <Image
+      src={image}
+      alt={title}
+      width="217"
+      height="145"
+      class="size-full object-cover"
+    />
+  </figure>
+  <div class="flex-1 flex flex-col justify-center space-y-8">
+    <h3><a href={link} target="_blank">{title}</a></h3>
+    <slot />
+  </div>
+</div>
+
+<style>
+  #product {
+    opacity: 1;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: 0 33%;
+    @media (--lg-min) {
+      animation-range: entry;
+    }
+  }
+</style>

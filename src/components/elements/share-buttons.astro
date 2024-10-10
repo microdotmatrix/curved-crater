@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-iconify";
+
+const { title, description } = Astro.props;
+const base_url = import.meta.env.SITE_URL;
+const slug = Astro.url.pathname ? Astro.url.pathname.replace(/\/$/, "") : "";
+---
+
+<ul class="flex border rounded-sm divide-x w-fit h-12 [&>li]:p-2 [&>li]:items-center [&>li]:justify-center [&>li]:text-gray-500 [&>li]:transition hover:[&>li]:text-primary">
+  <li class="flex-auto">
+    <a
+      aria-label="facebook share button"
+      href={`https://facebook.com/sharer/sharer.php?u=${base_url}${slug}`}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <Icon name="simple-icons:facebook" class="size-full" />
+    </a>
+  </li>
+  <li class="flex-auto">
+    <a
+      aria-label="x/twitter share button"
+      href={`https://x.com/intent/tweet/?text=${title}&amp;url=${base_url}${slug}`}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <Icon name="simple-icons:x" class="size-full" />
+    </a>
+  </li>
+  <li class="flex-auto">
+    <a
+      aria-label="linkedin share button"
+      href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}${slug}&title=${title}&summary=${description}&source=${base_url}`}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <Icon name="simple-icons:linkedin" class="size-full" />
+    </a>
+  </li>
+  <li class="flex-auto">
+    <a
+      aria-label="pinterest share button"
+      href={`https://pinterest.com/pin/create/button/?url=${base_url}${slug}&media=&description=${description}`}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <Icon name="simple-icons:pinterest" class="size-full" />
+    </a>
+  </li>
+</ul>

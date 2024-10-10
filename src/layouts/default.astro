@@ -1,0 +1,58 @@
+---
+import "@/styles/global.css";
+
+import Footer from "@/components/footer.astro";
+import Header from "@/components/header.astro";
+import Meta from "@/components/meta.astro";
+
+interface Props {
+  title: string;
+  mainClasses?: string;
+}
+
+const anim = {
+  old: {
+    name: "bump",
+    duration: "0.25s",
+    easing: "ease-in",
+    direction: "reverse",
+  },
+  new: {
+    name: "bump",
+    duration: "0.25s",
+    easing: "ease-in-out",
+  },
+};
+
+const customTransition = {
+  forwards: anim,
+  backwards: anim,
+};
+
+const { title, mainClasses } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Meta title={title} />
+  <body>
+    <Header />
+    <main class={mainClasses}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  @keyframes bump {
+    0% {
+      opacity: 0;
+      transform: scale(1) translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>

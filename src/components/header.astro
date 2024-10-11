@@ -1,6 +1,5 @@
 ---
 import Logo from "./elements/gli.astro";
-import NavLink from "./elements/nav-link.astro";
 import Navigation from "./sections/navigation.astro";
 import ThemeSwitch from "./theme/toggle.astro";
 import { Icon } from "astro-iconify";
@@ -98,7 +97,8 @@ import { Icon } from "astro-iconify";
       left: 0;
       width: 100%;
       height: 100%;
-      background: hsl(var(--background));
+      background-color: hsl(var(--secondary));
+      backdrop-filter: blur(10px);
       transform: translateX(-100%);
       transition: transform 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
       &.open {

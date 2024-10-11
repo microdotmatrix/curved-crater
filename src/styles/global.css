@@ -65,6 +65,7 @@
     @apply border-border;
   }
   html {
+    min-width: 320px;
     scroll-behavior: smooth;
   }
   body {
@@ -73,7 +74,7 @@
     inline-size: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-    font-weight: 280;
+    font-weight: 320;
     line-height: calc(1em + 0.5rem);
   }
   h1,
@@ -112,7 +113,13 @@
     @apply flex-1;
   }
   p a[href] {
-    @apply underline;
+    text-decoration-thickness: 1px;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    transition: all 300ms ease;
+    &:is(:hover, :focus) {
+      color: hsl(var(--primary));
+    }
   }
 }
 

@@ -7,6 +7,7 @@ import Meta from "@/components/meta.astro";
 
 interface Props {
   title: string;
+  description?: string;
   mainClasses?: string;
 }
 
@@ -29,12 +30,16 @@ const customTransition = {
   backwards: anim,
 };
 
-const { title, mainClasses } = Astro.props;
+const {
+  title,
+  description = "Green Lion Partners is a Denver, CO based business strategy firm focused on early stage development in the regulated cannabis industry",
+  mainClasses,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <Meta title={title} />
+  <Meta title={`${title} | Green Lion Partners`} description={description} />
   <body>
     <Header />
     <main class={mainClasses}>
@@ -44,15 +49,41 @@ const { title, mainClasses } = Astro.props;
   </body>
 </html>
 
-<style is:global>
-  @keyframes bump {
-    0% {
-      opacity: 0;
-      transform: scale(1) translateY(50px);
-    }
-    100% {
+<!-- <style is:global>
+  @view-transition {
+    navigation: auto;
+  }
+
+  @keyframes move-out {
+    from {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: translateY(0%);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-10%);
     }
   }
-</style>
+
+  @keyframes move-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  /* Apply the custom animation to the old and new page states */
+  ::view-transition-old(root) {
+    animation: 300ms ease both move-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 300ms ease both move-in;
+  }
+</style> -->
